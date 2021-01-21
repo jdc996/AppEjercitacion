@@ -24,10 +24,10 @@ public class practica2 {
         return numerosString;
     }
 
-    public static List<String> crearListas(List<String> numeros) {
+    public static List<String> crearListas(List<String> numeros, int contIter) {
         Map<String,List<String>> listas = new HashMap();
-        List<String> listaOrdenada = new ArrayList<>();
-        int contIter = numeros.get(0).length() - 1;
+        List<String> listaOrdenada ;
+
         System.out.println(contIter);
         for (String numero:numeros) {
             String digito = String.valueOf(numero.charAt(contIter));
@@ -41,24 +41,34 @@ public class practica2 {
             }
         }
 
-        return null;
+        listaOrdenada = unirListasLi(listas);
+        contIter--;
+
+        if(contIter<0){
+            return listaOrdenada;
+        }else{
+            return crearListas(listaOrdenada,contIter);
+        }
     }
 
-    public static List<String> crearListaOrdenada(Map<String,List<String>> listas){
+    public static List<String> unirListasLi(Map<String,List<String>> listas){
+        List<String> listaOrdenada = new ArrayList<>();
         for (Map.Entry<String,List<String>> entry: listas.entrySet()){
             System.out.println("Key "+entry.getKey() + " Valor" +entry.getValue());
-
+             listaOrdenada.addAll(entry.getValue());
         }
-        return null;
+        return listaOrdenada;
     }
 
     public static void radixSort(int []arr){
         List<String> numerosString = convertirArrayString(arr);
         System.out.println(numerosString);
-        crearListas(numerosString);
+        int contIter = numerosString.get(0).length() - 1;
+        List<String> listaOrdenada = crearListas(numerosString,contIter);
+        System.out.println(listaOrdenada);
     }
     public static void main(String[] args) {
-        int[] numerosArreglo = {2,32423,423,54,2,1};
+        int[] numerosArreglo = {1,444,423,441,442,440};
         radixSort(numerosArreglo);
 
     }
