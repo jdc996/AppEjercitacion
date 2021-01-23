@@ -1,12 +1,13 @@
 package controller;
 
+import javax.rmi.CORBA.Util;
 import java.util.*;
 
 public class Practica2 {
 
 
     public static List<String> crearListas(List<String> numeros, int contIter) {
-        HashMap<String,List<String>> listas = new HashMap<>();
+        TreeMap<String,List<String>> listas = new TreeMap<>();
         List<String> listaOrdenada ;
 
         System.out.println(contIter);
@@ -34,7 +35,7 @@ public class Practica2 {
         }
     }
 
-    public static List<String> unirListasLi(HashMap<String,List<String>> listas){
+    public static List<String> unirListasLi(TreeMap<String,List<String>> listas){
         List<String> listaOrdenada = new ArrayList<>();
         for (Map.Entry<String,List<String>> entry: listas.entrySet()){
             System.out.println("Key "+entry.getKey() + " Valor" +entry.getValue());
@@ -52,8 +53,9 @@ public class Practica2 {
         System.out.println(listaOrdenada);
     }
     public static void main(String[] args) {
+
         int[] numerosArreglo = {1,444,423,441,442,440,2,3,5,6,7,8,9};
-        radixSort(numerosArreglo);
+        //radixSort(numerosArreglo);
 
     }
 }
